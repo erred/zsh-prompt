@@ -19,7 +19,7 @@ precmd() {
     human+="${seconds}s"
 
     # date time
-    PROMPT="%F{yellow}%*%f "
+    PROMPT="$prompt_newline%F{yellow}%*%f "
     # path
     PROMPT+="%F{blue}%~%f "
     # exec time
