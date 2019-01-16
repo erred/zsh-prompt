@@ -22,17 +22,17 @@ precmd() {
     git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 
     # date time
-    PROMPT="$prompt_newline%F{green}%*%f "
+    PROMPT="${prompt_newline}%F{green}%*%f "
     # path
     PROMPT+="%F{blue}%~%f "
     # exec time
     PROMPT+="%F{yellow}${human}%f"
-    PROMPT+="$prompt_newline"
-    [[ -n "$STY" ]] && PROMPT+="%F{242}${STY%.*}%f "
-    [[ -n "$VIRTUAL_ENV" ]] && PROMPT+="%F{242}${VIRTUAL_ENV:t}%f "
-    [[ -n "$git_branch" ]] && PROMPT+="%F{242}${git_branch}%f "
+    PROMPT+="${prompt_newline}"
+    [[ -n "${STY}" ]] && PROMPT+="%F{242}${STY%.*}%f "
+    [[ -n "${VIRTUAL_ENV}" ]] && PROMPT+="%F{242}${VIRTUAL_ENV:t}%f "
+    [[ -n "${git_branch}" ]] && PROMPT+="%F{242}${git_branch}%f "
     PROMPT+="%(?.%F{magenta}.%F{red})"
-    [[ "$SSH_CONNECTION" != "" ]] && PROMPT+="%n@%m"
+    [[ -n "${SSH_CONNECTION}" ]] && PROMPT+="%n@%m"
     PROMPT+="» %f"
 }
 
