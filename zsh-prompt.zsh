@@ -18,6 +18,9 @@ precmd() {
     (( minutes > 0 )) && human+="${minutes}m "
     human+="${seconds}s"
 
+    local git_branch
+    git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
     # date time
     PROMPT="$prompt_newline%F{green}%*%f "
     # path
@@ -27,6 +30,7 @@ precmd() {
     PROMPT+="$prompt_newline"
     [[ -n "$STY" ]] && PROMPT+="%F{242}${STY%.*}%f "
     [[ -n "$VIRTUAL_ENV" ]] && PROMPT+="%F{242}${VIRTUAL_ENV:t}%f "
+    [[ -n "$git_branch" ]] && PROMPT+="%F{242}${git_branch}%f "
     PROMPT+="%(?.%F{magenta}.%F{red})"
     [[ "$SSH_CONNECTION" != "" ]] && PROMPT+="%n@%m"
     PROMPT+="» %f"
